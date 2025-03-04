@@ -24,4 +24,8 @@ view: team_lob_utilization {
     type: count
     drill_fields: [team_name]
   }
+  measure: sum_of_total_hours {
+    type: sum
+    sql: ${total_hours};;
+  }
 }
