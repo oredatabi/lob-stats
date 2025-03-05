@@ -29,14 +29,15 @@ view: team_lob_utilization {
     sql: ${total_hours};;
     value_format_name: decimal_0
   }
-  measure: utilisation {
+  measure: services_hours_ratio {
     type: number
     sql:
-    CASE
+    SUM(CASE
       WHEN ${lob} IN ('Services - Consultancy', 'Services - Managed', 'Services - Project Implementation')
-      THEN SUM(${total_hours}) / NULLIF(${total_hours}, 0)
-      ELSE NULL
-    END ;;
-    value_format_name: decimal_2
+      THEN ${total_hours}
+      ELSE 0
+    END) / NULLIF(SUM(${total_hours}), 0) ;;
+    value_format_name: percent_2
+    description: "Belirli Services kategorileri için toplam saatlerin tüm toplam saatlere oranı"
   }
 }
