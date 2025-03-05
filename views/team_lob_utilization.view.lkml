@@ -27,5 +27,6 @@ view: team_lob_utilization {
   measure: sum_of_total_hours {
     type: sum
     sql: ${total_hours};;
+    value_format_name: decimal_0
   }
 }
