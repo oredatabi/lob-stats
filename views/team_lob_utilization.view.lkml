@@ -29,4 +29,14 @@ view: team_lob_utilization {
     sql: ${total_hours};;
     value_format_name: decimal_0
   }
+  measure: utilisation {
+    type: number
+    sql:
+    CASE
+      WHEN ${lob} IN ('Services - Consultancy', 'Services - Managed', 'Services - Project Implementation')
+      THEN SUM(${total_hours}) / NULLIF(${total_hours}, 0)
+      ELSE NULL
+    END ;;
+    value_format_name: decimal_2
+  }
 }
