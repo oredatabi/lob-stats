@@ -33,7 +33,7 @@ view: team_lob_utilization {
     type: number
     sql:
     SUM(CASE
-      WHEN ${lob} IN ('Services - Consultancy', 'Services - Managed', 'Services - Project Implementation')
+      WHEN ${lob} IN ('Services - Consultancy', 'Services - Managed Services', 'Services - Project Implementation')
       THEN ${total_hours}
       ELSE 0
     END) / NULLIF(SUM(${total_hours}), 0) ;;
